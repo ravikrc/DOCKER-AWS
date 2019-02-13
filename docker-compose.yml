@@ -1,0 +1,19 @@
+version: '3'
+services:
+  notebook:
+    build:    .
+    ports:
+    - "80:8888"
+    links:
+    - mongo
+    volumes:
+      - ~/project_1/data:/home/jovyan/work
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: dsi_melb
+      MONGO_INITDB_ROOT_PASSWORD: padlock
+    volumes:
+      - ~/project_1/data/mongodb:/data/db
+
